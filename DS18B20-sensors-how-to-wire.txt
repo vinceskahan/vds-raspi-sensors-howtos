@@ -1,0 +1,29 @@
+#
+# Wiring two DS18B20 temperature sensors to breadboard
+# =====================================================
+#
+#                                 col 8         col 9           col 10
+#
+# row A:                      to_ground_rail                 to_power_rail
+# row B:                                          x-- (470 ohm) --x
+# row C: DS18B20 sensor    =>       VCC          DATA           GROUND
+# row D:
+# row E:                           jumper       jumper          jumper
+#   (breadboard gutter)              |            |               |
+#   (breadboard gutter)              |            |               |
+# row F:                           jumper       jumper          jumper
+# row G:
+# row H: DS18B20 sensor    =>       VCC          DATA           GROUND
+#
+# note: sensor will get 'very' hot if you get the power/ground reversed
+#
+# modprobe w1-gpio and w1-therm (or add to /etc/modules)
+#      should see a /sys/bus/w1/devices/<ID_NUMBER> tree
+#      id number is the unique serial number for that particular sensor
+#      cat out the w1_slave file under that tree for the info, it will
+#             contain something ala 25123 meaning 25.123 C
+#      first line indicates whether the data is good or not
+#      the data might show a bogus value the first time it is read
+#
+#
+#

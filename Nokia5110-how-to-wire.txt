@@ -1,0 +1,17 @@
+#
+# Nokia 5110 LCD display to breadboard
+# =====================================
+#  1 = RST   = GPIO 24
+#  2 = CE    = CE0
+#  3 = DC    = GPIO 23
+#  4 = DIN   = MOSI
+#  5 = CLK   = SCLK
+#  6 = VCC   = +3v3 (power_rail)
+#  7 = LIGHT = PWN  (GPIO 18)
+#  8 = GRD   = GND  (ground_rail)
+#
+# This example uses the Adafruit Nokia LCD library
+# ================================================
+#   git clone https://github.com/adafruit/Adafruit_Nokia_LCD.git
+#      use the example code therein as a starting point
+#

@@ -1,0 +1,28 @@
+#
+# LCD-16x2 pinouts for pi
+# ========================
+# pin - description - where to connect for pi
+#  1 = Ground   = ground on pi
+#  2 = 5V VCC   = +5V
+#  3 = Contrast = ground or better yet, to wiper on 10k trim pot
+#                   with the other pot pins to power and ground
+#  4 = RS       = GPIO 25
+#  5 = RW       = ground
+#  6 = CE       = GPIO 24
+#  7 ignore
+#  8 ignore
+#  9 ignore
+# 10 ignore
+# 11 = 4        = GPIO 23
+# 12 = 5        = GPIO 17
+# 13 = 6        = GPIO 21/27
+# 14 = 7        = GPIO 22
+# 15 = LED +    = +5V
+# 16 = LED -    = ground 
+#
+#
+# Driving a 16x2 using the Adafruit library
+# ==========================================
+# git clone git://github.com/adafruit/Adafruit-Raspberry-Pi-Python-Code.git
+# use the example code in Adafruit_CharLCD
+#
