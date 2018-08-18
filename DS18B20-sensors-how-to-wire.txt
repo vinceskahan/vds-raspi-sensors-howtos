@@ -26,4 +26,16 @@
 #      the data might show a bogus value the first time it is read
 #
 #
+# You can add more sensors ala row-H, aligning the three pins matching
+# the other ones (VCC on 8, Data on 9, Ground on 10 in diagram above)
+#
+# Quick test on a pi model-B would use 3.3V for Power (pin-1) and 
+# GPIO 7 (pin-4) for data and pin-6 for ground based on 
+# http://pi4j.com/pins/model-b-rev2.html
+#
+# Add dtoverlay=w1-gpio to /boot/config.txt and add 'w1-gpio' and 'w1-therm' to
+# /etc/modules-load.d/modules.conf and reboot the pi so the 1-wire devices
+# appear on bootup.
+#
+
 #
