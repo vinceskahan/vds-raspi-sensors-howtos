@@ -1,41 +1,44 @@
 #
-# Wiring two DS18B20 temperature sensors to breadboard
-# =====================================================
+# Wiring multiple DS18B20 temperature sensors to breadboard
+# =========================================================
 #
-#                                 col 8         col 9           col 10
+#                                 col 8          col 7         col 6
+# row A:
+# row B: DS18B20 sensor    =>     GROUND          DATA          VCC
+# row C: DS18B20 sensor    =>     GROUND          DATA          VCC
+# row D: DS18B20 sensor    =>     GROUND          DATA          VCC
+# row E:                          jumper         jumper        jumper
+#   (breadboard gutter)              |             |             |
+#   (breadboard gutter)              |             |             |
+# row F:                          jumper         jumper        jumper
+# row G: DS18B20 sensor    =>     GROUND          DATA          VCC
+# row H: DS18B20 sensor    =>     GROUND          DATA          VCC
+# row I: 470 ohm resistor  =>                      x-----(R)-----x
+# row J:                         (to 3.3V)                   (to ground)
 #
-# row A:                      to_ground_rail                 to_power_rail
-# row B:                                          x-- (470 ohm) --x
-# row C: DS18B20 sensor    =>       VCC          DATA           GROUND
-# row D:
-# row E:                           jumper       jumper          jumper
-#   (breadboard gutter)              |            |               |
-#   (breadboard gutter)              |            |               |
-# row F:                           jumper       jumper          jumper
-# row G:
-# row H: DS18B20 sensor    =>       VCC          DATA           GROUND
+# on the DS18B20 that I have, with the flat side toward from you,
+#   left pin = GROUND, center = DATA, right = VCC
 #
 # note: sensor will get 'very' hot if you get the power/ground reversed
 #
 # modprobe w1-gpio and w1-therm (or add to /etc/modules)
-#      should see a /sys/bus/w1/devices/<ID_NUMBER> tree
-#      id number is the unique serial number for that particular sensor
-#      cat out the w1_slave file under that tree for the info, it will
-#             contain something ala 25123 meaning 25.123 C
-#      first line indicates whether the data is good or not
-#      the data might show a bogus value the first time it is read
+#   * you should see a /sys/bus/w1/devices/<ID_NUMBER> tree
+#   * the id number is the unique serial number for that particular sensor
+#   * cat out the w1_slave file under that tree for the info, it will
+#           contain something ala 25123 meaning 25.123 C
+#   * the first line indicates whether the data is good or not
+#   * the data might show a bogus value the first time it is read
 #
+# one resistor for multiple DS18B20 sensors is fine
 #
-# You can add more sensors ala row-H, aligning the three pins matching
-# the other ones (VCC on 8, Data on 9, Ground on 10 in diagram above)
+# Quick test on a pi model-B would use:
+#       3.3V   (pi pin-1)
+#       GPIO 7 (pi pin-4) for data
+#       GROUND (pi pin-6)
+# based on http://pi4j.com/pins/model-b-rev2.html
 #
-# Quick test on a pi model-B would use 3.3V for Power (pin-1) and 
-# GPIO 7 (pin-4) for data and pin-6 for ground based on 
-# http://pi4j.com/pins/model-b-rev2.html
-#
-# Add dtoverlay=w1-gpio to /boot/config.txt and add 'w1-gpio' and 'w1-therm' to
-# /etc/modules-load.d/modules.conf and reboot the pi so the 1-wire devices
-# appear on bootup.
-#
-
+# to make the 1-wire devices appear on bootup:
+#    * add dtoverlay=w1-gpio to /boot/config.txt
+#    * add 'w1-gpio' and 'w1-therm' to /etc/modules-load.d/modules.conf
+#    * reboot the pi as a last test that the sensors appear on bootup.
 #
