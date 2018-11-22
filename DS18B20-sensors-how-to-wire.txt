@@ -13,8 +13,8 @@
 # row F:                          jumper         jumper        jumper
 # row G: DS18B20 sensor    =>     GROUND          DATA          VCC
 # row H: DS18B20 sensor    =>     GROUND          DATA          VCC
-# row I: 470 ohm resistor  =>                      x-----(R)-----x
-# row J:                         (to 3.3V)                   (to ground)
+# row I: 10k ohm resistor  =>                     x-----(R)-----x
+# row J:                         (to ground)                 (to 3.3V)
 #
 # on the DS18B20 that I have, with the flat side toward from you,
 #   left pin = GROUND, center = DATA, right = VCC
